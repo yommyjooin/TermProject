@@ -1,6 +1,7 @@
 package com.example.termproject;
 
 import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,13 +15,13 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
-    EditText edit;
+    EditText edit1, edit2;
     TextView text;
 
-    String key= "RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D";
-
+    String TrainKey= "RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D";
+    String BusKey = "K%2FhtglJ%2BZ0HWSHrD7sSotR0wXupBxdrOjcW8XN31U3HKGwA4f5E0ziTlQzUux9vN0htlydvoGMpHZcw17NX%2Btw%3D%3D";
     String data;
 
     @Override
@@ -28,7 +29,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edit= (EditText)findViewById(R.id.edit);
+        edit1 = (EditText)findViewById(R.id.EditDep);
+        edit2 = (EditText)findViewById(R.id.EditLoc);
         text= (TextView)findViewById(R.id.text);
     }
 
@@ -37,7 +39,6 @@ public class MainActivity extends Activity {
 
         switch( v.getId() ){
             case R.id.button:
-
 
                 new Thread(new Runnable() {
 
@@ -69,12 +70,13 @@ public class MainActivity extends Activity {
 
         StringBuffer buffer=new StringBuffer();
 
-        String str= edit.getText().toString();//EditText에 작성된 Text얻어오기
-        String location = URLEncoder.encode(str);//한글의 경우 인식이 안되기에 utf-8 방식으로 encoding     //지역 검색 위한 변수
-
+        String str1= edit1.getText().toString();//EditText에 작성된 Text얻어오기
+        String str2= edit2.getText().toString();
+        String department = URLEncoder.encode(str1);
+        String location = URLEncoder.encode(str2);//한글의 경우 인식이 안되기에 utf-8 방식으로 encoding     //지역 검색 위한 변수
 
         String queryUrl="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey="//요청 URL
-                + key +"&numOfRows=10&pageNo=1&arrPlaceId="+location+"&depPlaceId=NAT010000&depPlandTime=20201201&trainGradeCode=00";
+                + TrainKey +"&numOfRows=10&pageNo=1&arrPlaceId="+location+"&depPlaceId="+department+"&depPlandTime=20201201&trainGradeCode=00";
 
         try {
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
