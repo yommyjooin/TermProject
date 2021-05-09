@@ -72,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
         String str1= edit1.getText().toString();//EditText에 작성된 Text얻어오기
         String str2= edit2.getText().toString();
-        String department = URLEncoder.encode(str1);
+        String departure = URLEncoder.encode(str1);
         String location = URLEncoder.encode(str2);//한글의 경우 인식이 안되기에 utf-8 방식으로 encoding     //지역 검색 위한 변수
 
         String queryUrl="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey="//요청 URL
-                + TrainKey +"&numOfRows=10&pageNo=1&arrPlaceId="+location+"&depPlaceId="+department+"&depPlandTime=20201201&trainGradeCode=00";
+                + TrainKey +"&numOfRows=10&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime=20201201";
 
         try {
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
@@ -108,25 +108,25 @@ public class MainActivity extends AppCompatActivity {
                             buffer.append("\n"); //줄바꿈 문자 추가
                         }
                         else if(tag.equals("arrplacename")){
-                            buffer.append("출발역 : ");
+                            buffer.append("도착역 : ");
                             xpp.next();
                             buffer.append(xpp.getText());
                             buffer.append("\n");
                         }
                         else if(tag.equals("arrplandtime")){
-                            buffer.append("출발 시간 :");
+                            buffer.append("도착 시간 :");
                             xpp.next();
                             buffer.append(xpp.getText());//arrplandtime
                             buffer.append("\n");
                         }
                         else if(tag.equals("depplacename")){
-                            buffer.append("도착지 :");
+                            buffer.append("출발역 :");
                             xpp.next();
                             buffer.append(xpp.getText());//depplacename
                             buffer.append("\n");
                         }
                         else if(tag.equals("depplandtime")){
-                            buffer.append("도착 시간 :");
+                            buffer.append("출발 시간 :");
                             xpp.next();
                             buffer.append(xpp.getText());//depplandtime
                             buffer.append("\n");
