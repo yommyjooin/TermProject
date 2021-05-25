@@ -14,7 +14,7 @@ public class IntroActivity extends AppCompatActivity {
     public TextView textView_test;
     public TextView textView_Date;
     public DatePickerDialog.OnDateSetListener callbackMethod;
-    public static Context c_context;
+    //public static Context c_context;
 
     // 시간표 화면으로 넘기는 변수들입니다
     int Year;
@@ -24,9 +24,9 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_intro);
 
-        c_context = this;
+        //c_context = this;
 
         this.InitializeView();
         this.InitializeListener();
