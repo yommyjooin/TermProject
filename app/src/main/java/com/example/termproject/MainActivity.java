@@ -2,171 +2,124 @@ package com.example.termproject;
 
 import android.app.Activity;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    EditText edit1, edit2;
-    TextView text;
 
-    String TrainKey= "RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D";
-    String BusKey = "K%2FhtglJ%2BZ0HWSHrD7sSotR0wXupBxdrOjcW8XN31U3HKGwA4f5E0ziTlQzUux9vN0htlydvoGMpHZcw17NX%2Btw%3D%3D";
-    String data;
+    ListView listView;
+    city findCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edit1 = (EditText)findViewById(R.id.EditDep);
-        edit2 = (EditText)findViewById(R.id.EditLoc);
-        text= (TextView)findViewById(R.id.text);
-    }
+        listView = (ListView)findViewById(R.id.listView);
 
-    //Button을 클릭했을 때 자동으로 호출되는 callback method
-    public void mOnClick(View v){
-
-        switch( v.getId() ){
-            case R.id.button:
-
-                new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        data= getXmlData();//아래 메소드를 호출하여 XML data를 파싱해서 String 객체로 얻어오기
-
-
-                        runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                // TODO Auto-generated method stub
-                                text.setText(data); //TextView에 문자열  data 출력
-                            }
-                        });
-
-                    }
-                }).start();
-
-                break;
+        ArrayList<city> list = xmlParser();
+        String[] data = new String[list.size()];
+        for(int i=0;i<list.size();i++) {
+            data[i] =  list.get(i).getName();
         }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,data);
+        listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object vo = (Object)parent.getAdapter().getItem(position);
+                findCity = null;
+                for(city s : list){
+                    if(s.getName().equals(vo)){
+                        findCity = s;
+                        break;
+                    }
+                }
+                //Toast.makeText(getApplicationContext(),"도시 코드는 "+findCity.getId()+"입니다", Toast.LENGTH_LONG).show();
+                NextSelect();
+                finish();
+            }
+        });
     }
 
+    public void NextSelect(){
+        Intent intent = new Intent(MainActivity.this, Select_StationActivity.class);
+        intent.putExtra("city", findCity.getId());
+        startActivity(intent);
+    }
 
-    String getXmlData(){
+    private ArrayList<city> xmlParser()  {
+        ArrayList<city> arrayList = new ArrayList<city>();
+        InputStream is = getResources().openRawResource(R.raw.city_code);
+        //String queryUrl = "http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyAcctoTrainSttnList?serviceKey=RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D&numOfRows=10&pageNo=1&cityCode=12";
 
-        StringBuffer buffer=new StringBuffer();
-
-        String str1= edit1.getText().toString();//EditText에 작성된 Text얻어오기
-        String str2= edit2.getText().toString();
-        String departure = URLEncoder.encode(str1);
-        String location = URLEncoder.encode(str2);//한글의 경우 인식이 안되기에 utf-8 방식으로 encoding     //지역 검색 위한 변수
-
-        String queryUrl="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey="//요청 URL
-                + TrainKey +"&numOfRows=100&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime=20201201";
-
+        //--- xmlPullParser ---//
         try {
-            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
-            InputStream is= url.openStream(); //url위치로 입력스트림 연결
+            //URL url= new URL(queryUrl);
+            //InputStream is = url.openStream();
 
-            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
-            XmlPullParser xpp= factory.newPullParser();
-            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser parser = factory.newPullParser();
+            parser.setInput(new InputStreamReader(is, "UTF-8"));
 
-            String tag;
+            city c = null;
 
-            xpp.next();
-            int eventType= xpp.getEventType();
+            parser.next();
+            int eventType = parser.getEventType();
 
-            while( eventType != XmlPullParser.END_DOCUMENT ){
-                switch( eventType ){
-                    case XmlPullParser.START_DOCUMENT:
-                        buffer.append("파싱 시작...\n\n");
-                        break;
-
+            while(eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
                     case XmlPullParser.START_TAG:
-                        tag= xpp.getName();//태그 이름 얻어오기
-
-                        if(tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("adultcharge")){
-                            buffer.append("요금 : ");
-                            xpp.next();
-                            buffer.append(xpp.getText());//addr 요소의 TEXT 읽어와서 문자열버퍼에 추가
-                            buffer.append("\n"); //줄바꿈 문자 추가
+                        String startTag = parser.getName();
+                        if(startTag.equals("item")) {
+                            c = new city();
                         }
-                        else if(tag.equals("arrplacename")){
-                            buffer.append("도착역 : ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
+                        if(startTag.equals("citycode")) {
+                            c.setId(parser.nextText());
                         }
-                        else if(tag.equals("arrplandtime")){
-                            buffer.append("도착 시간 :");
-                            xpp.next();
-                            buffer.append(xpp.getText());//arrplandtime
-                            buffer.append("\n");
+                        if(startTag.equals("cityname")) {
+                            c.setName(parser.nextText());
                         }
-                        else if(tag.equals("depplacename")){
-                            buffer.append("출발역 :");
-                            xpp.next();
-                            buffer.append(xpp.getText());//depplacename
-                            buffer.append("\n");
-                        }
-                        else if(tag.equals("depplandtime")){
-                            buffer.append("출발 시간 :");
-                            xpp.next();
-                            buffer.append(xpp.getText());//depplandtime
-                            buffer.append("\n");
-                        }
-                        else if(tag.equals("traingradename")){
-                            buffer.append("열차 :");
-                            xpp.next();
-                            buffer.append(xpp.getText());//traingradename
-                            buffer.append("\n");
-                        }
-                        else if(tag.equals("trainno")){
-                            buffer.append("열차 번호 :");
-                            xpp.next();
-                            buffer.append(xpp.getText());//csId
-                            buffer.append("\n");
-                        }
-
                         break;
-
-                    case XmlPullParser.TEXT:
-                        break;
-
                     case XmlPullParser.END_TAG:
-                        tag= xpp.getName(); //태그 이름 얻어오기
-
-                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
-
+                        String endTag = parser.getName();
+                        if(endTag.equals("item")) {
+                            arrayList.add(c);
+                        }
                         break;
                 }
-
-                eventType= xpp.next();
+                eventType = parser.next();
             }
 
-        } catch (Exception e) {
-            // TODO Auto-generated catch blocke.printStackTrace();
+        }catch(XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        buffer.append("파싱 끝\n");
-
-        return buffer.toString();//StringBuffer 문자열 객체 반환
-
+        return arrayList;
     }
-
 }
