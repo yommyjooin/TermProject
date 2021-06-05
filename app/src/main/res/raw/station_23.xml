@@ -1,0 +1,18 @@
+<items>
+    <item>
+        <nodeid>NATC30058</nodeid>
+        <nodename>인천공항T2</nodename>
+    </item>
+    <item>
+        <nodeid>NAT060231</nodeid>
+        <nodename>주안</nodename>
+    </item>
+    <item>
+        <nodeid>NATC10325</nodeid>
+        <nodename>검암</nodename>
+    </item>
+    <item>
+        <nodeid>NATC10580</nodeid>
+        <nodename>인천공항T1</nodename>
+    </item>
+</items>
