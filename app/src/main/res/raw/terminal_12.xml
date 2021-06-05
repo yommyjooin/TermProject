@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+    <item>
+        <terminalId>NAEK350</terminalId>
+        <terminalNm>조치원</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK351</terminalId>
+        <terminalNm>세종연구단지</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK352</terminalId>
+        <terminalNm>세종시</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK353</terminalId>
+        <terminalNm>세종청사</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK354</terminalId>
+        <terminalNm>홍대조치원</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK355</terminalId>
+        <terminalNm>고대조치원</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK358</terminalId>
+        <terminalNm>세종연구단지</terminalNm>
+    </item>
+
+    <item>
+        <terminalId>NAEK361</terminalId>
+        <terminalNm>세종국무조정실</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK362</terminalId>
+        <terminalNm>세종시청</terminalNm>
+    </item>
+</items>

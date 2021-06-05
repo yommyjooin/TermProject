@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+    <item>
+        <terminalId>NAEK300</terminalId>
+        <terminalNm>대전복합</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK305</terminalId>
+        <terminalNm>대전청사</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK307</terminalId>
+        <terminalNm>대전도룡</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK360</terminalId>
+        <terminalNm>유성</terminalNm>
+    </item>
+</items>

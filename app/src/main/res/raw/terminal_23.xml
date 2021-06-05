@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+    <item>
+        <terminalId>NAEK100</terminalId>
+        <terminalNm>인천</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK101</terminalId>
+        <terminalNm>부천</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK105</terminalId>
+        <terminalNm>인천공항T1</terminalNm>
+    </item>
+</items>

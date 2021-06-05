@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+    <item>
+        <terminalId>NAEK010</terminalId>
+        <terminalNm>서울경부</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK020</terminalId>
+        <terminalNm>센트럴시티(서울)</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK030</terminalId>
+        <terminalNm>동서울</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK032</terminalId>
+        <terminalNm>동서울</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK040</terminalId>
+        <terminalNm>상봉</terminalNm>
+    </item>
+</items>

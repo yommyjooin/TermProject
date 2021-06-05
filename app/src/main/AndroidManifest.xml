@@ -13,18 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TermProject"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewActivity"></activity>
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/city_code_bus" />
+
+        <activity android:name=".ViewActivity" />
         <activity android:name=".Select_StationActivity" />
-        <activity android:name=".IntroActivity" >
+        <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

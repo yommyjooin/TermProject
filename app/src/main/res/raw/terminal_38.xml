@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+    <item>
+        <terminalId>NAEK704</terminalId>
+        <terminalNm>진해</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK705</terminalId>
+        <terminalNm>마산</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK706</terminalId>
+        <terminalNm>내서</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK710</terminalId>
+        <terminalNm>창원</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK711</terminalId>
+        <terminalNm>창원역</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK722</terminalId>
+        <terminalNm>진주</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK723</terminalId>
+        <terminalNm>진주개양</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK724</terminalId>
+        <terminalNm>진주혁신</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK730</terminalId>
+        <terminalNm>통영</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK735</terminalId>
+        <terminalNm>김해</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK736</terminalId>
+        <terminalNm>김해장유</terminalNm>
+    </item>
+</items>

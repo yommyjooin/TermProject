@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+    <item>
+        <terminalId>NAEK700</terminalId>
+        <terminalNm>부산</terminalNm>
+    </item>
+    <item>
+        <terminalId>NAEK703</terminalId>
+        <terminalNm>서부산(사상)</terminalNm>
+    </item>
+</items>
