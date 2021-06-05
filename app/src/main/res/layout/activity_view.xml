@@ -7,14 +7,28 @@
     tools:context=".ViewActivity"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="시간표 결과"
-        android:textAlignment="center"
-        android:gravity="center_horizontal">
-    </TextView>
+        android:layout_height="wrap_content">
 
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="뒤로가기"
+            android:textSize="20dp">
+        </Button>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="시간표 결과"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal">
+        </TextView>
+
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

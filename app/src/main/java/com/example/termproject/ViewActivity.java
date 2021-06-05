@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ public class ViewActivity extends AppCompatActivity {
 
     TextView text;
 
+    Button btnBack;
+
     String TrainKey= "RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D";
     String BusKey = "K%2FhtglJ%2BZ0HWSHrD7sSotR0wXupBxdrOjcW8XN31U3HKGwA4f5E0ziTlQzUux9vN0htlydvoGMpHZcw17NX%2Btw%3D%3D";
     String data;
@@ -33,6 +36,15 @@ public class ViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view);
 
         text= (TextView)findViewById(R.id.text);
+        btnBack = (Button)findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+                startActivity(intent);
+            }
+        });
 
         new Thread(new Runnable() {
 
