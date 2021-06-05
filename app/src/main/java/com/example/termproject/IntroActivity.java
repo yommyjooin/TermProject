@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -30,6 +31,7 @@ public class IntroActivity extends AppCompatActivity {
 
         this.InitializeView();
         this.InitializeListener();
+
     }
 
     public void InitializeView()

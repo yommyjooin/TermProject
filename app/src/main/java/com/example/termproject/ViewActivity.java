@@ -4,11 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -31,6 +36,8 @@ public class ViewActivity extends AppCompatActivity {
     String BusKey = "K%2FhtglJ%2BZ0HWSHrD7sSotR0wXupBxdrOjcW8XN31U3HKGwA4f5E0ziTlQzUux9vN0htlydvoGMpHZcw17NX%2Btw%3D%3D";
     String data;
 
+    private TableLayout tableLayout;
+
     public static String dep, arr;
     public static int Year, Month, Day;
 
@@ -49,6 +56,8 @@ public class ViewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
         new Thread(new Runnable() {
 
@@ -159,7 +168,7 @@ public class ViewActivity extends AppCompatActivity {
                             xpp.next();
                             String arrplandtime = xpp.getText();
                             String arrYear = arrplandtime.substring(0,4);
-                            buffer.append(depYear+"년");
+                            buffer.append(arrYear+"년");
                             for(int i = 4; i < arrplandtime.length(); i=i+2){
                                 String temp = arrplandtime.substring(i, i+2);
                                 String str = " ";
@@ -216,7 +225,8 @@ public class ViewActivity extends AppCompatActivity {
                             buffer.append("\n");
                         }
 
-                        break;*/
+                        break;
+                        */
 
                         Map<String, String> info = new HashMap<String, String>();
 
@@ -265,7 +275,8 @@ public class ViewActivity extends AppCompatActivity {
                             String depSec = depplandtime.substring(12,14);
                             String depTime = depHour+":"+depMin+":"+depSec;
                             info.put("출발날짜", depDate);
-                            info.put("depHour", depHour);
+                            //int numdepHour = Integer.parseInt(depHour);
+                            info.put("dephour", depHour);
                             info.put("출발시간", depTime);
                         }
                         else if(tag.equals("traingradename")){
@@ -278,11 +289,15 @@ public class ViewActivity extends AppCompatActivity {
                         }
 
 
+
+
                         Set<String> keys = info.keySet();
                         for(String key:keys){
                             buffer.append(key+":"+info.get(key));
                             buffer.append("\n");
                         }
+
+
 
                         /*
                         String temp = new String(info.get("depHour"));
@@ -295,10 +310,10 @@ public class ViewActivity extends AppCompatActivity {
                         buffer.append("n도착날짜"+info.get("도착날짜"));
                         buffer.append("n도착시간"+info.get("도착시간"));
                         buffer.append("n열차"+info.get("열차")+" 열차번호:"+info.get("열차번호"));
-                        buffer.append("n요금"+info.get("요금"));*/
+                        buffer.append("n요금"+info.get("요금"));
 
 
-                        break;
+                        break;*/
 
 
                     case XmlPullParser.TEXT:
