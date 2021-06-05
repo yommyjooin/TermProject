@@ -3,7 +3,7 @@ package com.example.termproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -14,18 +14,18 @@ public class IntroActivity extends AppCompatActivity {
     public TextView textView_test;
     public TextView textView_Date;
     public DatePickerDialog.OnDateSetListener callbackMethod;
-    //public static Context c_context;
 
-    // 시간표 화면으로 넘기는 변수들입니다
-    int Year;
-    int Month;
-    int Day;
+    public static TextView deptextView, arrtextView;
+    public static int DorA = 0;
+    //public static Context c_context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+        arrtextView = findViewById(R.id.arrbutton);
+        deptextView = findViewById(R.id.depbutton);
         //c_context = this;
 
         this.InitializeView();
@@ -35,8 +35,6 @@ public class IntroActivity extends AppCompatActivity {
     public void InitializeView()
     {
         textView_Date = (TextView)findViewById(R.id.date_button);
-        textView_test = (TextView)findViewById(R.id.test);
-
     }
 
     public void InitializeListener()
@@ -47,8 +45,7 @@ public class IntroActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
             {
                 textView_Date.setText(year + "년" + (monthOfYear+1 ) + "월" + dayOfMonth + "일");
-                Year = year; Month = monthOfYear+1; Day = dayOfMonth;
-                textView_test.setText("Year : "+Year+"   Month : "+Month+"   Day : "+Day);
+                ViewActivity.Year = year; ViewActivity.Month = monthOfYear+1; ViewActivity.Day = dayOfMonth;
             }
         };
     }
@@ -59,4 +56,19 @@ public class IntroActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public void SelectdepStation(View view) {
+        DorA = 0;
+        Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void SelectarrStation(View view) {
+        DorA = 1;
+        Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void mOnClick(View view) {
+        Intent intent = new Intent(IntroActivity.this, ViewActivity.class);
+        startActivity(intent);
+    }
 }
