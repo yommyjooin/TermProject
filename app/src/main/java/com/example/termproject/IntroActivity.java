@@ -16,7 +16,7 @@ public class IntroActivity extends AppCompatActivity {
     public TextView textView_Date;
     public DatePickerDialog.OnDateSetListener callbackMethod;
 
-    public static TextView deptextView, arrtextView;
+    public static TextView deptextView, arrtextView, traintextView;
     public static int DorA = 0;
     //public static Context c_context;
 
@@ -27,6 +27,7 @@ public class IntroActivity extends AppCompatActivity {
 
         arrtextView = findViewById(R.id.arrbutton);
         deptextView = findViewById(R.id.depbutton);
+        traintextView = findViewById(R.id.train);
         //c_context = this;
 
         this.InitializeView();
@@ -66,6 +67,11 @@ public class IntroActivity extends AppCompatActivity {
     public void SelectarrStation(View view) {
         DorA = 1;
         Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void SelectTrain(View view){
+        DorA = 2;
+        Intent intent = new Intent(IntroActivity.this, Select_TrainActivity.class);
         startActivity(intent);
     }
 

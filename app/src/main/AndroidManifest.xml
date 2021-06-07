@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true">
         <meta-data
             android:name="com.google.android.actions"
-            android:resource="@xml/city_code_bus" />
+            android:resource="@raw/city_code_bus" />
 
         <activity android:name=".ViewActivity" />
         <activity android:name=".Select_StationActivity" />
@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Select_TrainActivity"></activity>
     </application>
 
 </manifest>
