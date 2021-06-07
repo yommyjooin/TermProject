@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <items>
     <item>
+        <vehiclekndid></vehiclekndid>
+        <vehiclekndnm>전체</vehiclekndnm>
+    </item>
+    <item>
         <vehiclekndid>00</vehiclekndid>
         <vehiclekndnm>KTX</vehiclekndnm>
     </item>
