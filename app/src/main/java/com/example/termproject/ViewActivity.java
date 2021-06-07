@@ -38,7 +38,7 @@ public class ViewActivity extends AppCompatActivity {
 
     private TableLayout tableLayout;
 
-    public static String dep, arr;
+    public static String dep, arr, train;
     public static int Year, Month, Day;
 
     @Override
@@ -124,9 +124,10 @@ public class ViewActivity extends AppCompatActivity {
 
         String departure = URLEncoder.encode(dep);
         String location = URLEncoder.encode(arr);//한글의 경우 인식이 안되기에 utf-8 방식으로 encoding     //지역 검색 위한 변수
+        String trains = URLEncoder.encode(train);
 
         String queryUrl="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey="//요청 URL
-                + TrainKey +"&numOfRows=100&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day);
+                + TrainKey +"&numOfRows=100&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day)+"&trainGradeCode="+trains;
 
         try {
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,67 +26,68 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class Select_TrainActivity extends AppCompatActivity{
 
     ListView listView;
-    city findCity;
+    train findtrain;
+
+    Button Back;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_select_train);
+
+        Back = (Button)findViewById(R.id.Back);
 
         listView = (ListView)findViewById(R.id.listView);
 
-        ArrayList<city> list = xmlParser();
-
+        ArrayList<train> list = xmlParser();
         String[] data = new String[list.size()];
-        for(int i=0;i<list.size();i++) {
-            data[i] =  list.get(i).getName();
+
+        for(int i=0; i<list.size(); i++){
+            data[i] = list.get(i).getName();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,data);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object vo = (Object)parent.getAdapter().getItem(position);
-                findCity = null;
-                for(city s : list){
-                    if(s.getName().equals(vo)){
-                        findCity = s;
+                train find=null;
+                for(train t : list){
+                    if(t.getName().equals(vo)){
+                        find = t;
                         break;
                     }
                 }
-                //Toast.makeText(getApplicationContext(),"도시 코드는 "+findCity.getId()+"입니다", Toast.LENGTH_LONG).show();
-                NextSelect();
+
+                if(IntroActivity.DorA==2){
+                    IntroActivity.traintextView.setText(find.getName());
+                    ViewActivity.train=find.getId();
+                }
+
                 finish();
             }
         });
     }
 
-    public void NextSelect(){
-        Intent intent = new Intent(MainActivity.this, Select_StationActivity.class);
-        intent.putExtra("city", findCity.getId());
-        startActivity(intent);
-    }
+    private ArrayList<train> xmlParser(){
+        ArrayList<train> arrayList = new ArrayList<train>();
+        InputStream is = getResources().openRawResource(R.raw.trains);
 
-    private ArrayList<city> xmlParser()  {
-        ArrayList<city> arrayList = new ArrayList<city>();
-        InputStream is = getResources().openRawResource(R.raw.city_code);
-        //String queryUrl = "http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyAcctoTrainSttnList?serviceKey=RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D&numOfRows=10&pageNo=1&cityCode=12";
+        //http://openapi.tago.go.kr/openapi/service/TrainInfoService/getVhcleKndList?serviceKey=RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D&numOfRows=10&pageNo=1&cityCode=12";
 
-        //--- xmlPullParser ---//
-        try {
-            //URL url= new URL(queryUrl);
-            //InputStream is = url.openStream();
-
+        try{
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             XmlPullParser parser = factory.newPullParser();
             parser.setInput(new InputStreamReader(is, "UTF-8"));
 
-            city c = null;
+            train t = null;
 
             parser.next();
             int eventType = parser.getEventType();
@@ -94,33 +96,37 @@ public class MainActivity extends AppCompatActivity {
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
                         String startTag = parser.getName();
-                        if(startTag.equals("item")) {
-                            c = new city();
+                        if (startTag.equals("item")) {
+                            t = new train();
                         }
-                        if(startTag.equals("citycode")) {
-                            c.setId(parser.nextText());
+                        if (startTag.equals("vehiclekndid")) {
+                            t.setId(parser.nextText());
                         }
-                        if(startTag.equals("cityname")) {
-                            c.setName(parser.nextText());
+                        if (startTag.equals("vehiclekndnm")) {
+                            t.setName(parser.nextText());
                         }
                         break;
+
                     case XmlPullParser.END_TAG:
                         String endTag = parser.getName();
-                        if(endTag.equals("item")) {
-                            arrayList.add(c);
+                        if (endTag.equals("item")) {
+                            arrayList.add(t);
                         }
                         break;
                 }
                 eventType = parser.next();
             }
-
-        }catch(XmlPullParserException e) {
+        }
+        catch(XmlPullParserException e){
             e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        }
+        catch(UnsupportedEncodingException e){
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch(IOException e){
             e.printStackTrace();
         }
         return arrayList;
+
     }
 }
