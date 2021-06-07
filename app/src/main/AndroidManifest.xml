@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TermProject"
         android:usesCleartextTraffic="true">
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@raw/city_code_bus" />
@@ -26,8 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Select_TrainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Select_TrainActivity" />
     </application>
 
 </manifest>

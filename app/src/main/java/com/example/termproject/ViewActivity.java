@@ -7,21 +7,27 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.sql.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -29,7 +35,7 @@ import java.util.Set;
 public class ViewActivity extends AppCompatActivity {
 
     TextView text;
-
+    ListView listView;
     Button btnBack;
 
     String TrainKey= "RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D";
@@ -48,6 +54,7 @@ public class ViewActivity extends AppCompatActivity {
 
         text= (TextView)findViewById(R.id.text);
         btnBack = (Button)findViewById(R.id.btnBack);
+        listView = (ListView)findViewById(R.id.listView03);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +64,12 @@ public class ViewActivity extends AppCompatActivity {
             }
         });
 
-
-
         new Thread(new Runnable() {
 
             @Override
             public void run() {
                 // TODO Auto-generated method stub
-                data= getXmlData();//아래 메소드를 호출하여 XML data를 파싱해서 String 객체로 얻어오기
+                ArrayList<Info> list = xmlParser();;//아래 메소드를 호출하여 XML data를 파싱해서 String 객체로 얻어오기
 
 
                 runOnUiThread(new Runnable() {
@@ -72,7 +77,13 @@ public class ViewActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         // TODO Auto-generated method stub
-                        text.setText(data); //TextView에 문자열  data 출력
+                        String[] data = new String[list.size()];
+                        for(int i=0;i<list.size();i++) {
+                            data[i] =  "       "+list.get(i).getTrain()+"                   "+list.get(i).getdepTime()+"                    "+list.get(i).getarrTime()+
+                                    "            "+list.get(i).getCharge();
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,data);
+                        listView.setAdapter(adapter);
                     }
                 });
 
@@ -110,12 +121,85 @@ public class ViewActivity extends AppCompatActivity {
         }
 
     }*/
+
     String setTime(int num){
         String String_num = Integer.toString(num);
         if(num<10){
             String_num = "0"+String_num;
         }
         return String_num;
+    }
+
+    private ArrayList<Info> xmlParser()  {
+        ArrayList<Info> arrayList = new ArrayList<Info>();
+
+        String departure = URLEncoder.encode(dep);
+        String location = URLEncoder.encode(arr);//한글의 경우 인식이 안되기에 utf-8 방식으로 encoding     //지역 검색 위한 변수
+        String trains = URLEncoder.encode(train);
+
+        String queryUrl="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey="//요청 URL
+                + TrainKey +"&numOfRows=100&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day)+"&trainGradeCode="+trains;
+
+        //--- xmlPullParser ---//
+        try {
+            URL url= new URL(queryUrl);
+            InputStream is = url.openStream();
+
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser parser = factory.newPullParser();
+            parser.setInput(new InputStreamReader(is, "UTF-8"));
+
+            Info c = null;
+
+            parser.next();
+            int eventType = parser.getEventType();
+
+            while(eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
+                    case XmlPullParser.START_TAG:
+                        String startTag = parser.getName();
+                        if(startTag.equals("item")) {
+                            c = new Info();
+                        }
+                        if(startTag.equals("adultcharge")) {
+                            c.setCharge(parser.nextText());
+                        }
+                        if(startTag.equals("arrplandtime")) {
+                            String arrplandtime = parser.nextText();
+                            String arrHour = arrplandtime.substring(8,10);
+                            String arrMin = arrplandtime.substring(10,12);
+                            String arrTime = arrHour+":"+arrMin;
+                            c.setarrTime(arrTime);
+                        }
+                        if(startTag.equals("depplandtime")) {
+                            String depplandtime = parser.nextText();
+                            String depHour = depplandtime.substring(8,10);
+                            String depMin = depplandtime.substring(10,12);
+                            String depTime = depHour+":"+depMin;
+                            c.setdepTime(depTime);
+                        }
+                        if(startTag.equals("traingradename")) {
+                            c.setTrain(parser.nextText());
+                        }
+                        break;
+                    case XmlPullParser.END_TAG:
+                        String endTag = parser.getName();
+                        if(endTag.equals("item")) {
+                            arrayList.add(c);
+                        }
+                        break;
+                }
+                eventType = parser.next();
+            }
+
+        }catch(XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return arrayList;
     }
 
     String getXmlData(){
