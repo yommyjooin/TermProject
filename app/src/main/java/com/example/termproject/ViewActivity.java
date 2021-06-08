@@ -34,7 +34,7 @@ import java.util.Set;
 
 public class ViewActivity extends AppCompatActivity {
 
-    TextView text;
+    TextView text,arrTextView,depTextView;
     ListView listView;
     Button btnBack;
 
@@ -55,8 +55,13 @@ public class ViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view);
 
         text= (TextView)findViewById(R.id.text);
+        arrTextView = (TextView)findViewById(R.id.arrText);
+        depTextView = (TextView)findViewById(R.id.depText);
         btnBack = (Button)findViewById(R.id.btnBack);
         listView = (ListView)findViewById(R.id.listView03);
+
+        arrTextView.setText(IntroActivity.arrtextView.getText());
+        depTextView.setText(IntroActivity.deptextView.getText());
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
