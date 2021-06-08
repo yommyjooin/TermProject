@@ -42,6 +42,8 @@ public class ViewActivity extends AppCompatActivity {
     String BusKey = "K%2FhtglJ%2BZ0HWSHrD7sSotR0wXupBxdrOjcW8XN31U3HKGwA4f5E0ziTlQzUux9vN0htlydvoGMpHZcw17NX%2Btw%3D%3D";
     String data;
 
+    ListViewAdapter adapter;
+
     private TableLayout tableLayout;
 
     public static String dep, arr, train;
@@ -77,13 +79,11 @@ public class ViewActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         // TODO Auto-generated method stub
-                        String[] data = new String[list.size()];
-                        for(int i=0;i<list.size();i++) {
-                            data[i] =  "       "+list.get(i).getTrain()+"                   "+list.get(i).getdepTime()+"                    "+list.get(i).getarrTime()+
-                                    "            "+list.get(i).getCharge();
-                        }
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,data);
+                        adapter = new ListViewAdapter();
                         listView.setAdapter(adapter);
+                        for(int i=0;i<list.size();i++) {
+                            adapter.addItem(list.get(i).getTrain(), list.get(i).getdepTime(), list.get(i).getarrTime(), list.get(i).getCharge());
+                        }
                     }
                 });
 
