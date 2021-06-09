@@ -43,6 +43,14 @@ public class Select_TrainActivity extends AppCompatActivity{
 
         Back = (Button)findViewById(R.id.Back);
 
+        Back.setOnClickListener(new View.OnClickListener(){
+           @Override
+           public void onClick(View view){
+               Intent intent = new Intent(getApplicationContext(),IntroActivity.class);
+               startActivity(intent);
+           }
+        });
+
         listView = (ListView)findViewById(R.id.listView);
 
         ArrayList<train> list = xmlParser();
@@ -53,6 +61,7 @@ public class Select_TrainActivity extends AppCompatActivity{
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,data);
         listView.setAdapter(adapter);
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -78,7 +87,14 @@ public class Select_TrainActivity extends AppCompatActivity{
 
     private ArrayList<train> xmlParser(){
         ArrayList<train> arrayList = new ArrayList<train>();
-        InputStream is = getResources().openRawResource(R.raw.trains);
+        InputStream is = null;
+
+        if(IntroActivity.TorB==0){
+            is = getResources().openRawResource(R.raw.trains);
+        }
+        else{
+            is = getResources().openRawResource(R.raw.bus);
+        }
 
         //http://openapi.tago.go.kr/openapi/service/TrainInfoService/getVhcleKndList?serviceKey=RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D&numOfRows=10&pageNo=1&cityCode=12";
 
@@ -99,11 +115,22 @@ public class Select_TrainActivity extends AppCompatActivity{
                         if (startTag.equals("item")) {
                             t = new train();
                         }
-                        if (startTag.equals("vehiclekndid")) {
-                            t.setId(parser.nextText());
+
+                        if(IntroActivity.TorB==0) {
+                            if (startTag.equals("vehiclekndid")) {
+                                t.setId(parser.nextText());
+                            }
+                            if (startTag.equals("vehiclekndnm")) {
+                                t.setName(parser.nextText());
+                            }
                         }
-                        if (startTag.equals("vehiclekndnm")) {
-                            t.setName(parser.nextText());
+                        else{
+                            if (startTag.equals("gradeId")) {
+                                t.setId(parser.nextText());
+                            }
+                            if (startTag.equals("gradeNm")) {
+                                t.setName(parser.nextText());
+                            }
                         }
                         break;
 
