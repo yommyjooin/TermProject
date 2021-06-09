@@ -2,10 +2,13 @@ package com.example.termproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +23,8 @@ public class IntroActivity extends AppCompatActivity {
     public static int DorA = 0, TorB = 0;
     //public static Context c_context;
 
+    Button trainBtn, busBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,9 @@ public class IntroActivity extends AppCompatActivity {
         deptextView = findViewById(R.id.depbutton);
         traintextView = findViewById(R.id.train);
         //c_context = this;
+
+        trainBtn = (Button)findViewById(R.id.trainBtn);
+        busBtn = (Button)findViewById(R.id.busBtn);
 
         this.InitializeView();
         this.InitializeListener();
@@ -82,11 +90,26 @@ public class IntroActivity extends AppCompatActivity {
 
     public void setTrain(View view) {
         //버튼 배경색 바꿈 or 텍스트 크기 변경으로 알려줌
+
+        trainBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trainBtn.setTextSize(30);
+                busBtn.setTextSize(10);
+            }
+        });
         TorB = 0;
     }
 
     public void setBus(View view) {
         //버튼 배경색 바꿈 or 텍스트 크기 변경으로 알려줌
+        busBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                busBtn.setTextSize(30);
+                trainBtn.setTextSize(10);
+            }
+        });
         TorB = 1;
     }
 }

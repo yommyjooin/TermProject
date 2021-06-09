@@ -42,6 +42,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp">
             <Button
+                android:id="@+id/trainBtn"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="기차"
@@ -49,6 +50,7 @@
                 android:onClick="setTrain">
             </Button>
             <Button
+                android:id="@+id/busBtn"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="버스"
