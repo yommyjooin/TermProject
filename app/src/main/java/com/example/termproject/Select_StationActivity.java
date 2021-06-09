@@ -62,7 +62,7 @@ public class Select_StationActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                Toast.makeText(getApplicationContext(),"역 코드는 "+find.getId()+"입니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"코드는 "+find.getId()+"입니다", Toast.LENGTH_LONG).show();
 
                 if(IntroActivity.DorA==0) {
                     IntroActivity.deptextView.setText(find.getName());
@@ -82,57 +82,114 @@ public class Select_StationActivity extends AppCompatActivity {
     private ArrayList<station> xmlParser()  {
         ArrayList<station> arrayList = new ArrayList<station>();
         InputStream is = null;
-        //select_city(is, citycode);
-        switch (citycode){
-            case 11:
-                is = getResources().openRawResource(R.raw.station_11);
-                break;
-            case 12:
-                is = getResources().openRawResource(R.raw.station_12);
-                break;
-            case 21:
-                is = getResources().openRawResource(R.raw.station_21);
-                break;
-            case 22:
-                is = getResources().openRawResource(R.raw.station_22);
-                break;
-            case 23:
-                is = getResources().openRawResource(R.raw.station_23);
-                break;
-            case 24:
-                is = getResources().openRawResource(R.raw.station_24);
-                break;
-            case 25:
-                is = getResources().openRawResource(R.raw.station_25);
-                break;
-            case 26:
-                is = getResources().openRawResource(R.raw.station_26);
-                break;
-            case 31:
-                is = getResources().openRawResource(R.raw.station_31);
-                break;
-            case 32:
-                is = getResources().openRawResource(R.raw.station_32);
-                break;
-            case 33:
-                is = getResources().openRawResource(R.raw.station_33);
-                break;
-            case 34:
-                is = getResources().openRawResource(R.raw.station_34);
-                break;
-            case 35:
-                is = getResources().openRawResource(R.raw.station_35);
-                break;
-            case 36:
-                is = getResources().openRawResource(R.raw.station_36);
-                break;
-            case 37:
-                is = getResources().openRawResource(R.raw.station_37);
-                break;
-            case 38:
-                is = getResources().openRawResource(R.raw.station_38    );
-                break;
+
+        //기차 xml로 연결
+        if(IntroActivity.TorB==0) {
+            switch (citycode) {
+                case 11:
+                    is = getResources().openRawResource(R.raw.station_11);
+                    break;
+                case 12:
+                    is = getResources().openRawResource(R.raw.station_12);
+                    break;
+                case 21:
+                    is = getResources().openRawResource(R.raw.station_21);
+                    break;
+                case 22:
+                    is = getResources().openRawResource(R.raw.station_22);
+                    break;
+                case 23:
+                    is = getResources().openRawResource(R.raw.station_23);
+                    break;
+                case 24:
+                    is = getResources().openRawResource(R.raw.station_24);
+                    break;
+                case 25:
+                    is = getResources().openRawResource(R.raw.station_25);
+                    break;
+                case 26:
+                    is = getResources().openRawResource(R.raw.station_26);
+                    break;
+                case 31:
+                    is = getResources().openRawResource(R.raw.station_31);
+                    break;
+                case 32:
+                    is = getResources().openRawResource(R.raw.station_32);
+                    break;
+                case 33:
+                    is = getResources().openRawResource(R.raw.station_33);
+                    break;
+                case 34:
+                    is = getResources().openRawResource(R.raw.station_34);
+                    break;
+                case 35:
+                    is = getResources().openRawResource(R.raw.station_35);
+                    break;
+                case 36:
+                    is = getResources().openRawResource(R.raw.station_36);
+                    break;
+                case 37:
+                    is = getResources().openRawResource(R.raw.station_37);
+                    break;
+                case 38:
+                    is = getResources().openRawResource(R.raw.station_38);
+                    break;
+            }
         }
+        // 버스 xml로 연결
+        else{
+            switch (citycode){
+                case 11:
+                    is = getResources().openRawResource(R.raw.terminal_11);
+                    break;
+                case 12:
+                    is = getResources().openRawResource(R.raw.terminal_12);
+                    break;
+                case 21:
+                    is = getResources().openRawResource(R.raw.terminal_21);
+                    break;
+                case 22:
+                    is = getResources().openRawResource(R.raw.terminal_22);
+                    break;
+                case 23:
+                    is = getResources().openRawResource(R.raw.terminal_23);
+                    break;
+                case 24:
+                    is = getResources().openRawResource(R.raw.terminal_24);
+                    break;
+                case 25:
+                    is = getResources().openRawResource(R.raw.terminal_25);
+                    break;
+                case 26:
+                    is = getResources().openRawResource(R.raw.terminal_26);
+                    break;
+                case 31:
+                    is = getResources().openRawResource(R.raw.terminal_31);
+                    break;
+                case 32:
+                    is = getResources().openRawResource(R.raw.terminal_32);
+                    break;
+                case 33:
+                    is = getResources().openRawResource(R.raw.terminal_33);
+                    break;
+                case 34:
+                    is = getResources().openRawResource(R.raw.terminal_34);
+                    break;
+                case 35:
+                    is = getResources().openRawResource(R.raw.terminal_35);
+                    break;
+                case 36:
+                    is = getResources().openRawResource(R.raw.terminal_36);
+                    break;
+                case 37:
+                    is = getResources().openRawResource(R.raw.terminal_37);
+                    break;
+                case 38:
+                    is = getResources().openRawResource(R.raw.terminal_38);
+                    break;
+            }
+        }
+
         //String queryUrl = "http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyAcctoTrainSttnList?serviceKey=RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D&numOfRows=10&pageNo=1&cityCode=12";
 
         //--- xmlPullParser ---//
@@ -156,11 +213,23 @@ public class Select_StationActivity extends AppCompatActivity {
                         if(startTag.equals("item")) {
                             st = new station();
                         }
-                        if(startTag.equals("nodeid")) {
-                            st.setId(parser.nextText());
+                        //기차 xml
+                        if(IntroActivity.TorB==0){
+                            if(startTag.equals("nodeid")) {
+                                st.setId(parser.nextText());
+                            }
+                            if(startTag.equals("nodename")) {
+                                st.setName(parser.nextText());
+                            }
                         }
-                        if(startTag.equals("nodename")) {
-                            st.setName(parser.nextText());
+                        //버스 xml
+                        else{
+                            if(startTag.equals("termianlId")) {
+                                st.setId(parser.nextText());
+                            }
+                            if(startTag.equals("terminalNm")) {
+                                st.setName(parser.nextText());
+                            }
                         }
                         break;
                     case XmlPullParser.END_TAG:

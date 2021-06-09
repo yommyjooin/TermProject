@@ -17,7 +17,7 @@ public class IntroActivity extends AppCompatActivity {
     public DatePickerDialog.OnDateSetListener callbackMethod;
 
     public static TextView deptextView, arrtextView, traintextView;
-    public static int DorA = 0;
+    public static int DorA = 0, TorB = 0;
     //public static Context c_context;
 
     @Override
@@ -78,5 +78,15 @@ public class IntroActivity extends AppCompatActivity {
     public void mOnClick(View view) {
         Intent intent = new Intent(IntroActivity.this, ViewActivity.class);
         startActivity(intent);
+    }
+
+    public void setTrain(View view) {
+        //버튼 배경색 바꿈 or 텍스트 크기 변경으로 알려줌
+        TorB = 0;
+    }
+
+    public void setBus(View view) {
+        //버튼 배경색 바꿈 or 텍스트 크기 변경으로 알려줌
+        TorB = 1;
     }
 }

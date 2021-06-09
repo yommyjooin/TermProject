@@ -141,10 +141,18 @@ public class ViewActivity extends AppCompatActivity {
         String departure = URLEncoder.encode(dep);
         String location = URLEncoder.encode(arr);//한글의 경우 인식이 안되기에 utf-8 방식으로 encoding     //지역 검색 위한 변수
         String trains = URLEncoder.encode(train);
+        String queryUrl = "";
+        //기차 정보 받아오기
+        if(IntroActivity.TorB==0){
+            queryUrl="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey="//요청 URL
+                    + TrainKey +"&numOfRows=100&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day)+"&trainGradeCode="+trains;
 
-        String queryUrl="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey="//요청 URL
-                + TrainKey +"&numOfRows=100&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day)+"&trainGradeCode="+trains;
-
+        }
+        // 버스 정보 받아오기
+        else{
+            queryUrl="http://openapi.tago.go.kr/openapi/service/ExpBusInfoService/getStrtpntAlocFndExpbusInfo?serviceKey="//요청 URL
+                    + BusKey +"&numOfRows=100&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day);
+        }
         //--- xmlPullParser ---//
         try {
             URL url= new URL(queryUrl);
@@ -166,27 +174,57 @@ public class ViewActivity extends AppCompatActivity {
                         if(startTag.equals("item")) {
                             c = new Info();
                         }
-                        if(startTag.equals("adultcharge")) {
-                            c.setCharge(parser.nextText());
+
+                        // 기차 데이터 추출
+                        if(IntroActivity.TorB==0){
+                            if(startTag.equals("adultcharge")) {
+                                c.setCharge(parser.nextText());
+                            }
+                            if(startTag.equals("arrplandtime")) {
+                                String arrplandtime = parser.nextText();
+                                String arrHour = arrplandtime.substring(8,10);
+                                String arrMin = arrplandtime.substring(10,12);
+                                String arrTime = arrHour+":"+arrMin;
+                                c.setarrTime(arrTime);
+                            }
+                            if(startTag.equals("depplandtime")) {
+                                String depplandtime = parser.nextText();
+                                String depHour = depplandtime.substring(8,10);
+                                String depMin = depplandtime.substring(10,12);
+                                String depTime = depHour+":"+depMin;
+                                c.setdepTime(depTime);
+                            }
+                            if(startTag.equals("traingradename")) {
+                                c.setTrain(parser.nextText());
+                            }
+                            break;
                         }
-                        if(startTag.equals("arrplandtime")) {
-                            String arrplandtime = parser.nextText();
-                            String arrHour = arrplandtime.substring(8,10);
-                            String arrMin = arrplandtime.substring(10,12);
-                            String arrTime = arrHour+":"+arrMin;
-                            c.setarrTime(arrTime);
+
+                        // 버스 데이터 추출
+                        else{
+                            if(startTag.equals("arrPlandTime")) {
+                                String arrplandtime = parser.nextText();
+                                String arrHour = arrplandtime.substring(8,10);
+                                String arrMin = arrplandtime.substring(10,12);
+                                String arrTime = arrHour+":"+arrMin;
+                                c.setarrTime(arrTime);
+                            }
+                            if(startTag.equals("charge")) {
+                                c.setCharge(parser.nextText());
+                            }
+                            if(startTag.equals("depPlandTime")) {
+                                String depplandtime = parser.nextText();
+                                String depHour = depplandtime.substring(8,10);
+                                String depMin = depplandtime.substring(10,12);
+                                String depTime = depHour+":"+depMin;
+                                c.setdepTime(depTime);
+                            }
+                            if(startTag.equals("gradeNm")) {
+                                c.setTrain(parser.nextText());
+                            }
+                            break;
                         }
-                        if(startTag.equals("depplandtime")) {
-                            String depplandtime = parser.nextText();
-                            String depHour = depplandtime.substring(8,10);
-                            String depMin = depplandtime.substring(10,12);
-                            String depTime = depHour+":"+depMin;
-                            c.setdepTime(depTime);
-                        }
-                        if(startTag.equals("traingradename")) {
-                            c.setTrain(parser.nextText());
-                        }
-                        break;
+
                     case XmlPullParser.END_TAG:
                         String endTag = parser.getName();
                         if(endTag.equals("item")) {
@@ -207,6 +245,9 @@ public class ViewActivity extends AppCompatActivity {
         return arrayList;
     }
 
+
+
+    // 사용 x //
     String getXmlData(){
 
         StringBuffer buffer=new StringBuffer();
@@ -429,5 +470,4 @@ public class ViewActivity extends AppCompatActivity {
         return buffer.toString();//StringBuffer 문자열 객체 반환
 
     }
-
 }
