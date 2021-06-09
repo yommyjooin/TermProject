@@ -56,13 +56,15 @@ public class Select_StationActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object vo = (Object)parent.getAdapter().getItem(position);
                 station find = null;
+                String Id = null;
                 for(station s : list){
                     if(s.getName().equals(vo)){
                         find = s;
+                        Toast.makeText(getApplicationContext(),"코드는"+find.getId()+"이고 이름은"+find.getName()+"입니다", Toast.LENGTH_LONG).show();
                         break;
                     }
                 }
-                Toast.makeText(getApplicationContext(),"코드는 "+find.getId()+"입니다", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"코드는"+find.getId()+"입니다", Toast.LENGTH_LONG).show();
 
                 if(IntroActivity.DorA==0) {
                     IntroActivity.deptextView.setText(find.getName());
@@ -224,7 +226,7 @@ public class Select_StationActivity extends AppCompatActivity {
                         }
                         //버스 xml
                         else{
-                            if(startTag.equals("termianlId")) {
+                            if(startTag.equals("terminalId")) {
                                 st.setId(parser.nextText());
                             }
                             if(startTag.equals("terminalNm")) {

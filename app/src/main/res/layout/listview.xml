@@ -5,36 +5,36 @@
     android:orientation="horizontal">
     <TextView
         android:id="@+id/train"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+
         android:text="train"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center">
     </TextView>
     <TextView
         android:id="@+id/dep"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:layout_weight="3"
+
         android:text="dep"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center">
     </TextView>
     <TextView
         android:id="@+id/arr"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:layout_weight="3"
+
         android:text="arr"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center">
     </TextView>
     <TextView
         android:id="@+id/charge"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+
         android:text="charge"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center">
