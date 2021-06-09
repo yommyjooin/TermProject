@@ -140,18 +140,19 @@ public class ViewActivity extends AppCompatActivity {
 
         String departure = URLEncoder.encode(dep);
         String location = URLEncoder.encode(arr);//한글의 경우 인식이 안되기에 utf-8 방식으로 encoding     //지역 검색 위한 변수
-        String trains = URLEncoder.encode(train);
         String queryUrl = "";
+        String trains = URLEncoder.encode(train);
+
         //기차 정보 받아오기
         if(IntroActivity.TorB==0){
+
             queryUrl="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey="//요청 URL
                     + TrainKey +"&numOfRows=100&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day)+"&trainGradeCode="+trains;
-
         }
         // 버스 정보 받아오기
         else{
             queryUrl="http://openapi.tago.go.kr/openapi/service/ExpBusInfoService/getStrtpntAlocFndExpbusInfo?serviceKey="//요청 URL
-                    + BusKey +"&numOfRows=100&pageNo=1&arrPlaceId="+location+"&depPlaceId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day);
+                    + BusKey +"&numOfRows=100&pageNo=1&depTerminalId="+location+"&arrTerminalId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day);
         }
         //--- xmlPullParser ---//
         try {
