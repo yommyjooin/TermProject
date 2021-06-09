@@ -152,7 +152,7 @@ public class ViewActivity extends AppCompatActivity {
         // 버스 정보 받아오기
         else{
             queryUrl="http://openapi.tago.go.kr/openapi/service/ExpBusInfoService/getStrtpntAlocFndExpbusInfo?serviceKey="//요청 URL
-                    + BusKey +"&numOfRows=100&pageNo=1&depTerminalId="+location+"&arrTerminalId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day);
+                    + BusKey +"&numOfRows=100&pageNo=1&depTerminalId="+location+"&arrTerminalId="+departure+"&depPlandTime="+Year+setTime(Month)+setTime(Day)+"&busGradeId="+trains;
         }
         //--- xmlPullParser ---//
         try {
