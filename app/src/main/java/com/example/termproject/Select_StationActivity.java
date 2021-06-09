@@ -36,13 +36,6 @@ public class Select_StationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_station);
 
         btnBack = (Button)findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         Intent intent = getIntent();
         String city = intent.getStringExtra("city");
