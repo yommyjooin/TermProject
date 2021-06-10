@@ -77,11 +77,13 @@ public class IntroActivity extends AppCompatActivity {
 
     public void SelectdepStation(View view) {
         DorA = 0;
+        deptextView.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
         Intent intent = new Intent(IntroActivity.this, MainActivity.class);
         startActivity(intent);
     }
     public void SelectarrStation(View view) {
         DorA = 1;
+        arrtextView.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
         Intent intent = new Intent(IntroActivity.this, MainActivity.class);
         startActivity(intent);
     }
