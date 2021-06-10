@@ -1,16 +1,20 @@
 package com.example.termproject;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,7 @@ public class IntroActivity extends AppCompatActivity {
 
     TextView trainText, busText;
     Button trainBtn, busBtn;
+    LinearLayout trainll, busll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,9 @@ public class IntroActivity extends AppCompatActivity {
 
         trainText = findViewById(R.id.trainText);
         busText = findViewById(R.id.busText);
+
+        trainll = findViewById(R.id.trainll);
+        busll = findViewById(R.id.busll);
 
         this.InitializeView();
         this.InitializeListener();
@@ -71,19 +79,21 @@ public class IntroActivity extends AppCompatActivity {
 
     public void OnClickHandler(View view)
     {
-        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethod, 2021, 6, 11);
+        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethod, 2021, 5, 11);
         dialog.show();
     }
 
     public void SelectdepStation(View view) {
         DorA = 0;
-        deptextView.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+        //deptextView.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+        deptextView.setTypeface(null, Typeface.BOLD);
         Intent intent = new Intent(IntroActivity.this, MainActivity.class);
         startActivity(intent);
     }
     public void SelectarrStation(View view) {
         DorA = 1;
-        arrtextView.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+        //arrtextView.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+        arrtextView.setTypeface(null, Typeface.BOLD);
         Intent intent = new Intent(IntroActivity.this, MainActivity.class);
         startActivity(intent);
     }
@@ -107,8 +117,12 @@ public class IntroActivity extends AppCompatActivity {
         trainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trainText.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
-                busText.setPaintFlags(0);
+                //trainText.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                trainText.setTypeface(null, Typeface.BOLD);
+                //busText.setPaintFlags(0);
+                busText.setTypeface(null, Typeface.NORMAL);
+                trainll.setBackgroundColor(Color.rgb(242,242,242));
+                busll.setBackgroundColor(Color.WHITE);
                 //busBtn.setTextSize(10);
                 DorA=2;
                 TorB=0;
@@ -124,8 +138,12 @@ public class IntroActivity extends AppCompatActivity {
         busBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                busText.setPaintFlags(busText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
-                trainText.setPaintFlags(0);
+                //busText.setPaintFlags(busText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                busText.setTypeface(null, Typeface.BOLD);
+                //trainText.setPaintFlags(0);
+                busll.setBackgroundColor(Color.rgb(242,242,242));
+                trainll.setBackgroundColor(Color.WHITE);
+                trainText.setTypeface(null, Typeface.NORMAL);
                 DorA=3;
                 TorB=1;
 

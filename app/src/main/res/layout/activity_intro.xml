@@ -49,6 +49,7 @@
                 app:cardCornerRadius="12dp"
                 android:layout_margin="12dp">
                 <LinearLayout
+                    android:id="@+id/trainll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -86,6 +87,7 @@
                 app:cardCornerRadius="12dp"
                 android:layout_margin="12dp">
                 <LinearLayout
+                    android:id="@+id/busll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
