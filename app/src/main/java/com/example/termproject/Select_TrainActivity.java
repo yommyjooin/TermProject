@@ -77,12 +77,6 @@ public class Select_TrainActivity extends AppCompatActivity{
 
                 if(IntroActivity.DorA==2){
                     IntroActivity.traintextView.setText(find.getName());
-                    IntroActivity.bustextView.setText("버스");
-                    ViewActivity.train=find.getId();
-                }
-                else if(IntroActivity.DorA==3){
-                    IntroActivity.bustextView.setText(find.getName());
-                    IntroActivity.traintextView.setText("기차");
                     ViewActivity.train=find.getId();
                 }
 
