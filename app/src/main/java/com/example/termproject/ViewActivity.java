@@ -179,7 +179,9 @@ public class ViewActivity extends AppCompatActivity {
                         // 기차 데이터 추출
                         if(IntroActivity.TorB==0){
                             if(startTag.equals("adultcharge")) {
-                                c.setCharge(parser.nextText());
+                                String charge = parser.nextText();
+                                if(Integer.parseInt(charge)==0) c.setCharge("매진");
+                                else c.setCharge(charge);
                             }
                             if(startTag.equals("arrplandtime")) {
                                 String arrplandtime = parser.nextText();
