@@ -19,7 +19,7 @@ public class IntroActivity extends AppCompatActivity {
     public TextView textView_Date;
     public DatePickerDialog.OnDateSetListener callbackMethod;
 
-    public static TextView deptextView, arrtextView, traintextView, bustextView;
+    public static TextView deptextView, arrtextView, traintextView;
     public static int DorA = 0, TorB = 0;
     //public static Context c_context;
 
@@ -30,10 +30,9 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        arrtextView = findViewById(R.id.arrText);
-        deptextView = findViewById(R.id.depText);
-        traintextView = findViewById(R.id.trainText);
-        bustextView = findViewById(R.id.busText);
+        arrtextView = findViewById(R.id.arrbutton);
+        deptextView = findViewById(R.id.depbutton);
+        traintextView = findViewById(R.id.train);
         //c_context = this;
 
         trainBtn = (Button)findViewById(R.id.trainBtn);
@@ -78,14 +77,11 @@ public class IntroActivity extends AppCompatActivity {
         Intent intent = new Intent(IntroActivity.this, MainActivity.class);
         startActivity(intent);
     }
-    /*
     public void SelectTrain(View view){
         DorA = 2;
         Intent intent = new Intent(IntroActivity.this, Select_TrainActivity.class);
         startActivity(intent);
     }
-
-     */
 
     public void mOnClick(View view) {
         Intent intent = new Intent(IntroActivity.this, ViewActivity.class);
@@ -100,13 +96,9 @@ public class IntroActivity extends AppCompatActivity {
             public void onClick(View v) {
                 trainBtn.setTextSize(30);
                 busBtn.setTextSize(10);
-                DorA=2;
-                TorB=0;
-                Intent intent = new Intent(IntroActivity.this, Select_TrainActivity.class);
-                startActivity(intent);
             }
         });
-
+        TorB = 0;
     }
 
     public void setBus(View view) {
@@ -116,13 +108,8 @@ public class IntroActivity extends AppCompatActivity {
             public void onClick(View v) {
                 busBtn.setTextSize(30);
                 trainBtn.setTextSize(10);
-                DorA=2;
-                TorB=1;
-
-                Intent intent = new Intent(IntroActivity.this, Select_TrainActivity.class);
-                startActivity(intent);
             }
         });
-
+        TorB = 1;
     }
 }
