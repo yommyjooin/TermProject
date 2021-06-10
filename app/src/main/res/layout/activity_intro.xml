@@ -11,66 +11,83 @@
     tools:layout_editor_absoluteY="8dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="276dp"
+        android:orientation="vertical">
+
         <RelativeLayout
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp">
+
             <TextView
                 android:id="@+id/a"
-                android:text="Application"
-                android:textSize="22sp"
-                android:textColor="#ffffff"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="Application"
+                android:textColor="#ffffff"
+                android:textSize="22sp" />
 
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="STEP1: 교통수단 선택"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnOrderPreserved="false"
+            android:layout_marginTop="5dp"
             android:alignmentMode="alignMargins"
-            android:rowCount="3"
             android:columnCount="2"
-            android:layout_marginTop="50dp">
+            android:columnOrderPreserved="false"
+            android:rowCount="3">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="12dp"
                 app:cardCornerRadius="12dp"
-                android:layout_margin="12dp">
+                app:cardElevation="6dp">
+
                 <LinearLayout
                     android:id="@+id/trainll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
-                    android:padding="16dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
                     <Button
                         android:id="@+id/trainBtn"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:background="@android:color/transparent"
                         android:drawableTop="@drawable/train"
-                        android:onClick="setTrain"/>
+                        android:onClick="setTrain" />
+
                     <TextView
                         android:id="@+id/trainText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:text="기차"
-                        android:textSize="18sp"
                         android:textColor="#6f6f6f"
-                        android:layout_marginTop="12dp">
+                        android:textSize="18sp">
 
                     </TextView>
 
@@ -81,35 +98,38 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="12dp"
                 android:background="@color/white"
-                app:cardElevation="6dp"
                 app:cardCornerRadius="12dp"
-                android:layout_margin="12dp">
+                app:cardElevation="6dp">
+
                 <LinearLayout
                     android:id="@+id/busll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
-                    android:padding="16dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
                     <Button
                         android:id="@+id/busBtn"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:background="@android:color/transparent"
                         android:drawableTop="@drawable/bus"
-                        android:onClick="setBus"/>
+                        android:onClick="setBus" />
+
                     <TextView
                         android:id="@+id/busText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:text="버스"
-                        android:textSize="18sp"
                         android:textColor="#6f6f6f"
-                        android:layout_marginTop="12dp">
+                        android:textSize="18sp">
 
                     </TextView>
                 </LinearLayout>
@@ -117,8 +137,18 @@
             </androidx.cardview.widget.CardView>
         </GridLayout>
 
-
     </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:text="STEP2: 출발지와 도착지 선택"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"/>
 
     <GridLayout
         android:layout_width="match_parent"
@@ -127,7 +157,7 @@
         android:alignmentMode="alignMargins"
         android:rowCount="3"
         android:columnCount="3"
-        android:layout_marginTop="0dp">
+        android:layout_marginTop="5dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
