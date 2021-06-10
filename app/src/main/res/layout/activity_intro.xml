@@ -77,6 +77,7 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,7 +126,7 @@
         android:columnOrderPreserved="false"
         android:alignmentMode="alignMargins"
         android:rowCount="3"
-        android:columnCount="2"
+        android:columnCount="3"
         android:layout_marginTop="0dp">
 
         <androidx.cardview.widget.CardView
@@ -164,6 +165,21 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            app:srcCompat="@drawable/ic_baseline_arrow_right_24"
+            android:layout_gravity="center"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="2dp"
+            android:id="@+id/imageButton"
+            android:tint="@color/black"
+            android:background="@color/white"
+            tools:ignore="VectorDrawableCompat" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

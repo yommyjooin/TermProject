@@ -47,7 +47,7 @@ public class Select_StationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String city = intent.getStringExtra("city");
         citycode = Integer.parseInt(city);
-        Toast.makeText(getApplicationContext(),"도시 코드는 "+citycode+"입니다", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"도시 코드는 "+citycode+"입니다", Toast.LENGTH_LONG).show();
         listView = (ListView)findViewById(R.id.listView);
 
         ArrayList<station> list = xmlParser();
@@ -67,7 +67,7 @@ public class Select_StationActivity extends AppCompatActivity {
                 for(station s : list){
                     if(s.getName().equals(vo)){
                         find = s;
-                        Toast.makeText(getApplicationContext(),"코드는"+find.getId()+"이고 이름은"+find.getName()+"입니다", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),"코드는"+find.getId()+"이고 이름은"+find.getName()+"입니다", Toast.LENGTH_LONG).show();
                         break;
                     }
                 }
