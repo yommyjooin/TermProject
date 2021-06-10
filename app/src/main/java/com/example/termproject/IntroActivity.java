@@ -1,9 +1,11 @@
 package com.example.termproject;
 
 import androidx.annotation.ColorInt;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +33,7 @@ public class IntroActivity extends AppCompatActivity {
     public static int DorA = 0, TorB = 0;
     //public static Context c_context;
 
-    TextView trainText, busText;
+    TextView trainText, busText, selectTV;
     Button trainBtn, busBtn;
     LinearLayout trainll, busll;
 
@@ -39,11 +42,15 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         arrtextView = findViewById(R.id.arrText);
         deptextView = findViewById(R.id.depText);
         traintextView = findViewById(R.id.trainText);
         bustextView = findViewById(R.id.busText);
         //c_context = this;
+        selectTV = findViewById(R.id.selectTV);
 
         trainBtn = (Button)findViewById(R.id.trainBtn);
         busBtn = (Button)findViewById(R.id.busBtn);
@@ -117,6 +124,8 @@ public class IntroActivity extends AppCompatActivity {
         trainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Select_TrainActivity.selectTV.setText("기차 종류 선택");
+                //selectTV.setText("기차");
                 //trainText.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 trainText.setTypeface(null, Typeface.BOLD);
                 //busText.setPaintFlags(0);
@@ -138,6 +147,7 @@ public class IntroActivity extends AppCompatActivity {
         busBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //selectTV.setText("버스 종류 선택");
                 //busText.setPaintFlags(busText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 busText.setTypeface(null, Typeface.BOLD);
                 //trainText.setPaintFlags(0);

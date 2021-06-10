@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,15 +26,19 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Select_TrainActivity extends AppCompatActivity{
 
+    public static TextView selectTV;
     ListView listView;
     train findtrain;
 
-    Button Back;
+    ImageButton Back;
+
+    //TextView selectTV;
 
     @Override
 
@@ -41,7 +46,7 @@ public class Select_TrainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_train);
 
-        Back = (Button)findViewById(R.id.Back);
+        Back = (ImageButton)findViewById(R.id.btnBack);
 
         Back.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -50,6 +55,8 @@ public class Select_TrainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+        selectTV = findViewById(R.id.selectTV);
 
         listView = (ListView)findViewById(R.id.listView);
 

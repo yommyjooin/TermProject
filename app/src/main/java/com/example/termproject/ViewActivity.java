@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -36,7 +37,7 @@ public class ViewActivity extends AppCompatActivity {
 
     TextView text,arrTextView,depTextView;
     ListView listView;
-    Button btnBack;
+    ImageButton btnBack;
 
     String TrainKey= "RD0BzjHbAJnBN1brAQq0R%2FJORqOCJU%2B56cy1%2F7blI1JiUoJFi%2FfEEbyFuYApB6DckZ19xn59cF52Sx1g9DsyHg%3D%3D";
     String BusKey = "K%2FhtglJ%2BZ0HWSHrD7sSotR0wXupBxdrOjcW8XN31U3HKGwA4f5E0ziTlQzUux9vN0htlydvoGMpHZcw17NX%2Btw%3D%3D";
@@ -57,7 +58,7 @@ public class ViewActivity extends AppCompatActivity {
         text= (TextView)findViewById(R.id.text);
         arrTextView = (TextView)findViewById(R.id.arrText);
         depTextView = (TextView)findViewById(R.id.depText);
-        btnBack = (Button)findViewById(R.id.btnBack);
+        btnBack = (ImageButton)findViewById(R.id.btnBack);
         listView = (ListView)findViewById(R.id.listView03);
 
         arrTextView.setText(IntroActivity.arrtextView.getText());

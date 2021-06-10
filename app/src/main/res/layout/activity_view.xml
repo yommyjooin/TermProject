@@ -9,22 +9,33 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_height="45dp"
+        android:background="#edeef7">
 
-        <Button
+        <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="뒤로가기"
-            android:textSize="20dp">
-        </Button>
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:background="@android:color/transparent"
+            android:tint="@color/black"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+            tools:ignore="VectorDrawableCompat"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="10dp"/>
+
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="조회결과"
-            android:textSize="20dp"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="조회 결과"
+            android:textAlignment="center"
+            android:textColor="#4f4f4f"
+            android:textSize="22sp">
+
         </TextView>
     </LinearLayout>
 
@@ -37,10 +48,12 @@
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="출발지"
-            android:textSize="20dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
             android:gravity="center"
             android:layout_gravity="center">
         </TextView>
+        <!--
         <ImageView
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -48,13 +61,26 @@
             android:src="@drawable/arrow"
             android:layout_margin="5dp">
         </ImageView>
+        -->
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="30dp"
+            android:layout_height="67dp"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:tint="#4f4f4f"
+            app:srcCompat="@drawable/ic_baseline_arrow_right_24"
+            tools:ignore="VectorDrawableCompat"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="2dp" />
         <TextView
             android:id="@+id/arrText"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="도착지"
-            android:textSize="20dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
             android:gravity="center"
             android:layout_gravity="center">
         </TextView>

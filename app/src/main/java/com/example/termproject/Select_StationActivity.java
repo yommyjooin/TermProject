@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ public class Select_StationActivity extends AppCompatActivity {
     ListView listView;
     int citycode;
 
-    Button btnBack;
+    ImageButton btnBack;
 
     public static String stationName;
 
@@ -35,7 +36,7 @@ public class Select_StationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_station);
 
-        btnBack = (Button)findViewById(R.id.btnBack);
+        btnBack = (ImageButton)findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
