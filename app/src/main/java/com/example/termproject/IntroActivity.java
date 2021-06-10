@@ -98,8 +98,8 @@ public class IntroActivity extends AppCompatActivity {
         trainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trainBtn.setTextSize(30);
-                busBtn.setTextSize(10);
+                //trainBtn.setTextSize(30);
+                //busBtn.setTextSize(10);
                 DorA=2;
                 TorB=0;
                 Intent intent = new Intent(IntroActivity.this, Select_TrainActivity.class);
@@ -114,9 +114,9 @@ public class IntroActivity extends AppCompatActivity {
         busBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                busBtn.setTextSize(30);
-                trainBtn.setTextSize(10);
-                DorA=2;
+                //busBtn.setTextSize(30);
+                //trainBtn.setTextSize(10);
+                DorA=3;
                 TorB=1;
 
                 Intent intent = new Intent(IntroActivity.this, Select_TrainActivity.class);
