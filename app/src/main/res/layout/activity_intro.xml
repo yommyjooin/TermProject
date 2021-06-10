@@ -22,7 +22,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/a"
-                android:text="Application??"
+                android:text="Application"
                 android:textSize="22sp"
                 android:textColor="#ffffff"
                 android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                         android:id="@+id/trainBtn"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:background="@color/white"
+                        android:background="@android:color/transparent"
                         android:drawableTop="@drawable/train"
                         android:onClick="setTrain"/>
                     <TextView
@@ -96,7 +96,7 @@
                         android:id="@+id/busBtn"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:background="@color/white"
+                        android:background="@android:color/transparent"
                         android:drawableTop="@drawable/bus"
                         android:onClick="setBus"/>
                     <TextView
@@ -145,7 +145,7 @@
                     android:id="@+id/depbutton"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@color/white"
+                    android:background="@android:color/transparent"
                     android:drawableTop="@drawable/start"
                     android:onClick="SelectdepStation"/>
                 <TextView
@@ -182,7 +182,7 @@
                     android:id="@+id/arrbutton"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@color/white"
+                    android:background="@android:color/transparent"
                     android:drawableTop="@drawable/eee"
                     android:onClick="SelectarrStation"/>
                 <TextView
@@ -225,15 +225,16 @@
                     android:layout_height="40dp"
                     android:background="@color/white"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
                     android:src="@drawable/cal"/>
                 <Button
                     android:id="@+id/date_button"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:text="날짜를 입력하세요"
                     android:gravity="center"
                     android:layout_gravity="center_horizontal"
-                    android:background="@color/white"
+                    android:backgroundTint="#f2f2f2"
                     android:textSize="18sp"
                     android:textColor="#6f6f6f"
                     android:layout_marginTop="12dp"

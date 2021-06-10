@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -23,6 +26,7 @@ public class IntroActivity extends AppCompatActivity {
     public static int DorA = 0, TorB = 0;
     //public static Context c_context;
 
+    TextView trainText, busText;
     Button trainBtn, busBtn;
 
     @Override
@@ -38,6 +42,9 @@ public class IntroActivity extends AppCompatActivity {
 
         trainBtn = (Button)findViewById(R.id.trainBtn);
         busBtn = (Button)findViewById(R.id.busBtn);
+
+        trainText = findViewById(R.id.trainText);
+        busText = findViewById(R.id.busText);
 
         this.InitializeView();
         this.InitializeListener();
@@ -64,7 +71,7 @@ public class IntroActivity extends AppCompatActivity {
 
     public void OnClickHandler(View view)
     {
-        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethod, 2021, 4, 24);
+        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethod, 2021, 6, 11);
         dialog.show();
     }
 
@@ -98,7 +105,8 @@ public class IntroActivity extends AppCompatActivity {
         trainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //trainBtn.setTextSize(30);
+                trainText.setPaintFlags(trainText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                busText.setPaintFlags(0);
                 //busBtn.setTextSize(10);
                 DorA=2;
                 TorB=0;
@@ -114,8 +122,8 @@ public class IntroActivity extends AppCompatActivity {
         busBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //busBtn.setTextSize(30);
-                //trainBtn.setTextSize(10);
+                busText.setPaintFlags(busText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                trainText.setPaintFlags(0);
                 DorA=3;
                 TorB=1;
 
