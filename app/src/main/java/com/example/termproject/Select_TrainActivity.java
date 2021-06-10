@@ -44,11 +44,11 @@ public class Select_TrainActivity extends AppCompatActivity{
         Back = (Button)findViewById(R.id.Back);
 
         Back.setOnClickListener(new View.OnClickListener(){
-           @Override
-           public void onClick(View view){
-               Intent intent = new Intent(getApplicationContext(),IntroActivity.class);
-               startActivity(intent);
-           }
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(),IntroActivity.class);
+                startActivity(intent);
+            }
         });
 
         listView = (ListView)findViewById(R.id.listView);
@@ -77,6 +77,12 @@ public class Select_TrainActivity extends AppCompatActivity{
 
                 if(IntroActivity.DorA==2){
                     IntroActivity.traintextView.setText(find.getName());
+                    IntroActivity.bustextView.setText("버스");
+                    ViewActivity.train=find.getId();
+                }
+                else if(IntroActivity.DorA==3){
+                    IntroActivity.bustextView.setText(find.getName());
+                    IntroActivity.traintextView.setText("기차");
                     ViewActivity.train=find.getId();
                 }
 
