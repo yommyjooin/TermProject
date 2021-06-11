@@ -130,7 +130,7 @@ public class IntroActivity extends AppCompatActivity {
                 trainText.setTypeface(null, Typeface.BOLD);
                 //busText.setPaintFlags(0);
                 busText.setTypeface(null, Typeface.NORMAL);
-                trainll.setBackgroundColor(Color.rgb(242,242,242));
+                trainll.setBackgroundColor(Color.rgb(232,232,232));
                 busll.setBackgroundColor(Color.WHITE);
                 //busBtn.setTextSize(10);
                 DorA=2;
@@ -151,7 +151,7 @@ public class IntroActivity extends AppCompatActivity {
                 //busText.setPaintFlags(busText.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 busText.setTypeface(null, Typeface.BOLD);
                 //trainText.setPaintFlags(0);
-                busll.setBackgroundColor(Color.rgb(242,242,242));
+                busll.setBackgroundColor(Color.rgb(232,232,232));
                 trainll.setBackgroundColor(Color.WHITE);
                 trainText.setTypeface(null, Typeface.NORMAL);
                 DorA=3;
